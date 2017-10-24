@@ -1,0 +1,18 @@
+{
+    "name": "qla/depcrud",
+    "description": "package for department crud things",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "l0rraine",
+            "email": "idn.lee@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Qla\\DepCRUD\\": "src"
+        }
+    }
+}

@@ -20,13 +20,11 @@ class DepCRUDServiceProvider extends ServiceProvider
         // - then the stock views that come with the package, in case a published view might be missing
         $this->loadViewsFrom(realpath(__DIR__.'/resources/views'), 'depcrud');
 
-        $this->publishes([__DIR__.'/database/migrations' => database_path('migrations')], 'migrations');
-
-
 
         $this->publishes([
             __DIR__.'/resources/views' => resource_path('views/vendor/qla/depcrud'),
-        ], 'view');
+            __DIR__.'/database/migrations' => database_path('migrations'),
+        ], 'qla');
 
     }
 

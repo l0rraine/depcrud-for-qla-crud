@@ -31,7 +31,7 @@ class DepCRUDServiceProvider extends ServiceProvider
     public function setupRoutes(Router $router)
     {
         $router->group(['namespace' => 'Qla\DepCRUD\app\Http\Controllers'], function ($router) {
-            \Route::group(['prefix' => config('qla.base.route_prefix', 'admin'), 'middleware' => ['web']], function () {
+            \Route::group(['prefix' => config('qla.base.route_prefix', 'manager'), 'middleware' => config('qla.base.admin_auth_middleware',['web'])], function () {
                 require __DIR__.'/routes/depcrud.php';
             });
         });

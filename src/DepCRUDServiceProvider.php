@@ -23,7 +23,7 @@ class DepCRUDServiceProvider extends ServiceProvider
 
         // LOAD CONFIG
         $this->mergeConfigFrom(
-            __DIR__.'/config/qla/depcrud.php', 'qla.base'
+            __DIR__.'/config/qla/depcrud.php', 'qla.depcrud'
         );
 
 

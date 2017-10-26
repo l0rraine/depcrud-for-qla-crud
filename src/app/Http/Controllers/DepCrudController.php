@@ -3,7 +3,7 @@
 namespace Qla\DepCRUD\app\Http\Controllers;
 
 use Qla\Crud\Controllers\CrudController;
-use Qla\DepCRUD\app\Models\Department;
+use Qla\DepCRUD\app\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -12,16 +12,16 @@ class DepCrudController extends CrudController
 //use CrudControllerTrait;
 
     /**
-     * @var Department
+     * @var User
      */
     private $department;
 
     /**
      * DepartmentController constructor.
      *
-     * @param Department $department
+     * @param User $department
      */
-    public function __construct(Department $department)
+    public function __construct(User $department)
     {
         parent::__construct();
 
@@ -37,7 +37,7 @@ class DepCrudController extends CrudController
         $this->crud->title = '单位';
         $this->crud->viewName='depcrud::department';
 
-        $this->crud->setModel('Qla\DepCRUD\app\Models\Department');
+        $this->crud->setModel('Qla\DepCRUD\app\Models\User');
     }
 
     public function getIndex()
@@ -56,7 +56,7 @@ class DepCrudController extends CrudController
     public function postAdd(Request $request)
     {
         $this->data = $_POST;
-        $this->validator = Validator::make($this->data, Department::rules(), Department::messages());
+        $this->validator = Validator::make($this->data, User::rules(), User::messages());
 
         return parent::storeCrud($request);
     }
@@ -74,7 +74,7 @@ class DepCrudController extends CrudController
     public function postEdit(Request $request)
     {
         $this->data = $_POST;
-        $this->validator = Validator::make($this->data, Department::rules(), Department::messages());
+        $this->validator = Validator::make($this->data, User::rules(), User::messages());
 
         return parent::updateCrud($request);
     }

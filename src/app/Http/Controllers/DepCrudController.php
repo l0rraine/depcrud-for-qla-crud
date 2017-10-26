@@ -3,7 +3,7 @@
 namespace Qla\DepCRUD\app\Http\Controllers;
 
 use Qla\Crud\Controllers\CrudController;
-use Qla\DepCRUD\app\Models\User;
+use Qla\DepCRUD\app\Models\Department;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -12,16 +12,16 @@ class DepCrudController extends CrudController
 //use CrudControllerTrait;
 
     /**
-     * @var User
+     * @var Department
      */
     private $department;
 
     /**
      * DepartmentController constructor.
      *
-     * @param User $department
+     * @param Department $department
      */
-    public function __construct(User $department)
+    public function __construct(Department $department)
     {
         parent::__construct();
 
@@ -31,13 +31,15 @@ class DepCrudController extends CrudController
 
     public function setup()
     {
-        $this->crud->route = 'Crud.Dep';
+        $this->crud->route = config('qla.depcrud.route_name_prefix', 'Crud.Dep');
         $this->crud->permissionName = 'department';
         $this->crud->indexRecursive = true;
         $this->crud->title = '单位';
         $this->crud->viewName='depcrud::department';
 
-        $this->crud->setModel('Qla\DepCRUD\app\Models\User');
+        $this->crud->setModel('Qla\DepCRUD\app\Models\Department');
+
+        $this->crud->setPermissionName('list.department');
     }
 
     public function getIndex()
@@ -56,7 +58,7 @@ class DepCrudController extends CrudController
     public function postAdd(Request $request)
     {
         $this->data = $_POST;
-        $this->validator = Validator::make($this->data, User::rules(), User::messages());
+        $this->validator = \Validator::make($this->data, Department::rules(), Department::messages());
 
         return parent::storeCrud($request);
     }
@@ -74,7 +76,7 @@ class DepCrudController extends CrudController
     public function postEdit(Request $request)
     {
         $this->data = $_POST;
-        $this->validator = Validator::make($this->data, User::rules(), User::messages());
+        $this->validator = \Validator::make($this->data, Department::rules(), Department::messages());
 
         return parent::updateCrud($request);
     }

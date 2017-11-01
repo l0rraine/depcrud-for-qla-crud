@@ -2,9 +2,9 @@
 
 namespace Qla\DepCRUD\app\Models;
 
-use Qla\Base\app\Models\BaseClassifiedModel;
+use Qla\Crud\app\Models\BaseClassifiedModel;
 use Qla\Crud\ModelTraits\BaseModelTrait;
-use Qla\Base\app\Helpers\Pinyin;
+use Qla\Crud\app\Http\Helpers\Pinyin;
 
 class Department extends BaseClassifiedModel
 {

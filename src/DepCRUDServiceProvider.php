@@ -21,17 +21,9 @@ class DepCRUDServiceProvider extends ServiceProvider
         $this->loadViewsFrom(realpath(__DIR__.'/resources/views'), 'depcrud');
 
 
-        // LOAD CONFIG
-        $this->mergeConfigFrom(
-            __DIR__.'/config/qla/depcrud.php', 'qla.depcrud'
-        );
-
-
-
         $this->publishes([
             __DIR__.'/resources/views' => resource_path('views/vendor/qla/depcrud'),
             __DIR__.'/database/migrations' => database_path('migrations'),
-            __DIR__.'/config/qla' => config_path('qla'),
         ], 'qla');
 
     }
@@ -39,7 +31,7 @@ class DepCRUDServiceProvider extends ServiceProvider
     public function setupRoutes(Router $router)
     {
         $router->group(['namespace' => 'Qla\DepCRUD\app\Http\Controllers'], function ($router) {
-            \Route::group(['prefix' => config('qla.base.route_prefix', 'manager'), 'middleware' => config('qla.base.admin_auth_middleware',['web'])], function () {
+            \Route::group(['prefix' => config('qla.adminpanel.route_prefix', 'Crud.Department'), 'middleware' => config('qla.adminpanel.admin_auth_middleware',['auth'])], function () {
                 require __DIR__.'/routes/depcrud.php';
             });
         });

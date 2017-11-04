@@ -31,11 +31,11 @@ class DepCrudController extends CrudController
 
     public function setup()
     {
-        $this->crud->route = config('qla.depcrud.route_name_prefix', 'Crud.Dep');
+        $this->crud->route          = config('qla.depcrud.route_name_prefix', 'Crud.Dep');
         $this->crud->permissionName = 'department';
         $this->crud->indexRecursive = true;
-        $this->crud->title = '单位';
-        $this->crud->viewName='depcrud::department';
+        $this->crud->title          = '单位';
+        $this->crud->viewName       = 'depcrud::department';
 
         $this->crud->setModel('Qla\DepCRUD\app\Models\Department');
 
@@ -57,7 +57,7 @@ class DepCrudController extends CrudController
 
     public function postAdd(Request $request)
     {
-        $this->data = $_POST;
+        $this->data      = $_POST;
         $this->validator = \Validator::make($this->data, Department::rules(), Department::messages());
 
         return parent::storeCrud($request);
@@ -65,17 +65,16 @@ class DepCrudController extends CrudController
 
     public function getEdit($id)
     {
-        $this->data['deps'] = $this->department->getSelectArrayByParentId(0, true);
+        $this->data['deps']  = $this->department->getSelectArrayByParentId(0, true);
         $this->data['model'] = $this->department->find($id);
-
-        $this->data['did'] = $this->data['model']->parent_id;
+        $this->data['did']   = $this->data['model']->parent_id;
 
         return parent::getEdit($id);
     }
 
     public function postEdit(Request $request)
     {
-        $this->data = $_POST;
+        $this->data      = $_POST;
         $this->validator = \Validator::make($this->data, Department::rules(), Department::messages());
 
         return parent::updateCrud($request);

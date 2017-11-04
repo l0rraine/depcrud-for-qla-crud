@@ -1,6 +1,6 @@
 <?php
 /*****************单位管理*****************/
-Route::group(['prefix' => 'department'], function () {
+Route::group(['prefix' => 'department','middleware'=>'web'], function () {
     Route::get('/', 'DepCrudController@getIndex')->name(config('qla.depcrud.route_name_prefix', 'Crud.Dep') . '.index');
     Route::get('indexJson', 'DepCrudController@indexJson')->name(config('qla.depcrud.route_name_prefix', 'Crud.Dep') . '.indexJson');
     Route::get('add', 'DepCrudController@getAdd')->name(config('qla.depcrud.route_name_prefix', 'Crud.Dep') . '.add');

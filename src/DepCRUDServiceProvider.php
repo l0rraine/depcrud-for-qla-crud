@@ -14,6 +14,13 @@ class DepCRUDServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        // LOAD THE CONFIG
+        $this->mergeConfigFrom(
+            __DIR__ . '/config/qla/depcrud.php', 'qla.depcrud'
+        );
+
+
         // LOAD THE VIEWS
         // - first the published views (in case they have any changes)
         $this->loadViewsFrom(resource_path('views/vendor/qla/depcrud'), 'depcrud');
@@ -24,6 +31,7 @@ class DepCRUDServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/resources/views' => resource_path('views/vendor/qla/depcrud'),
             __DIR__.'/database/migrations' => database_path('migrations'),
+            __DIR__ . '/config/qla' => config_path('qla'),
         ], 'qla');
 
     }

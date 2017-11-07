@@ -37,7 +37,7 @@ class DepCrudController extends CrudController
         $this->crud->title          = '单位';
         $this->crud->viewName       = 'depcrud::department';
 
-        $this->crud->setModel('Qla\DepCRUD\app\Models\Department');
+        $this->crud->setModel(config('qla.depcrud.dep_model',\Qla\DepCRUD\app\Models\Department::class));
 
         $this->crud->setPermissionName('list.department');
     }
